@@ -20,27 +20,27 @@ public class Application {
         collezione.addGioco(new Videogiochi(5555, "World of Warcraft", 2004, 20, "PC", 300, Generi.MMORPG));
 
         try {
-            collezione.addGioco(new Giochidatavolo(16, "Cluedo", 1949, 30, 6, 45));
+            collezione.addGioco(new Giochidatavolo(1616, "Cluedo", 1949, 30, 6, 45));
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
         try {
-            collezione.addGioco(new Giochidatavolo(17, "UNO", 1971, 10, 4, 20));
+            collezione.addGioco(new Giochidatavolo(1717, "UNO", 1971, 10, 4, 20));
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
         try {
-            collezione.addGioco(new Giochidatavolo(18, "Gioco dell'Oca", 1500, 15, 4, 30));
+            collezione.addGioco(new Giochidatavolo(1818, "Gioco dell'Oca", 1500, 15, 4, 30));
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
         try {
-            collezione.addGioco(new Giochidatavolo(19, "Risiko", 1957, 35, 6, 120));
+            collezione.addGioco(new Giochidatavolo(1919, "Risiko", 1957, 35, 6, 120));
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
         try {
-            collezione.addGioco(new Giochidatavolo(20, "Tavola Ouija", 1890, 25, 2, 20));
+            collezione.addGioco(new Giochidatavolo(2020, "Tavola Ouija", 1890, 25, 2, 20));
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
