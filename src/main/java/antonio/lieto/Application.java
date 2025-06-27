@@ -81,8 +81,52 @@ public class Application {
                     collezione.rimuoviGioco(id);
                 }
                 case 3 -> {
-                    System.out.println();
+                    System.out.println("id da aggiornare: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    Giochi g = collezione.cercaId(id);
+                    if(g == null){
+                        System.out.println("gioco non trovato");
+                    }else {
+                        System.out.println("nuovo titolo: ");
+                        String titolo = scanner.nextLine();
+                        System.out.println("nuovo anno: ");
+                        int anno = scanner.nextInt();
+                        System.out.println("nuovo prezzo: ");
+                        int prezzo = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (g instanceof Videogiochi) {
+                            System.out.println("nuova piattaforma: ");
+                            String piattaforma = scanner.nextLine();
+                            System.out.println("nuova durata: ");
+                            double durata = scanner.nextDouble();
+                            scanner.nextLine();
+                            System.out.println("nuovo genere: ");
+                            String gen = scanner.nextLine();
+                            try {
+                                Generi genere = Generi.valueOf(gen);
+                                Videogiochi nuovoVG = new Videogiochi(id, titolo, anno, prezzo, piattaforma, durata, genere);
+                                collezione.aggiornaGioco(id,nuovoVG);
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("genere non valito");
+                            }
+                        } else if (g instanceof Giochidatavolo) {
+                            System.out.println("nuovo numero di giocatori: ");
+                            int num = scanner.nextInt();
+                            System.out.println("nuova durata media: ");
+                            int durata = scanner.nextInt();
+                            Giochidatavolo nuovoGDT = null;
+                            try {
+                                nuovoGDT = new Giochidatavolo(id, titolo, anno, prezzo, num, durata);
+                            } catch (IllegalAccessException e) {
+                                throw new RuntimeException(e);
+                            }
+                            collezione.aggiornaGioco(id,nuovoGDT);
+                        }
+                    }
                 }
+                case 4 -> {}
             }
         }
     }
