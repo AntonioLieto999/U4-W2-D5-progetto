@@ -1,6 +1,6 @@
 package antonio.lieto;
 
-import javax.sound.midi.Soundbank;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,29 +31,20 @@ public class Collezione {
         return null;
     }
 
-    public List<Giochi> cercaPrezzo(int prezzoMax){
-        List<Giochi> ritornoDelPrezzo = new ArrayList<>();
-        for (int i = 0; i <giochi.size(); i++) {
-            if(giochi.get(i).getPrezzo() < prezzoMax) {
-                ritornoDelPrezzo.add(giochi.get(i));
-            }
-        }
-        return ritornoDelPrezzo;
+    public List<Giochi> cercaPrezzo(int prezzoMax) {
+        return giochi.stream()
+                .filter(g -> g.getPrezzo() < prezzoMax)
+                .toList();
     }
 
     public List<Giochidatavolo> ricercaPerNumeroDiGiocatori(int num) {
-        List<Giochidatavolo> ritornoDeiGiocatori = new ArrayList<>();
-        for (int i =0 ; i < giochi.size(); i++) {
-            Giochi giochi1 = giochi.get(i);
-            if (giochi1 instanceof Giochidatavolo) {
-                Giochidatavolo giocoTavolo = (Giochidatavolo) giochi1;
-                if (giocoTavolo.getNumeroGiocatori() == num) {
-                    ritornoDeiGiocatori.add(giocoTavolo);
-                }
-            }
-        }
-        return ritornoDeiGiocatori;
+        return giochi.stream()
+                .filter(g -> g instanceof Giochidatavolo)
+                .map(g -> (Giochidatavolo) g)
+                .filter(gdt -> gdt.getNumeroGiocatori() == num)
+                .toList();
     }
+
     public void stampaIGiochi() {
         for (int i = 0; i < giochi.size(); i++) {
             System.out.println(giochi.get(i));
