@@ -40,4 +40,23 @@ public class Collezione {
         }
         return ritornoDelPrezzo;
     }
+
+    public List<Giochidatavolo> ricercaPerNumeroDiGiocatori(int num) {
+        List<Giochidatavolo> ritornoDeiGiocatori = new ArrayList<>();
+        for (int i =0 ; i < giochi.size(); i++) {
+            Giochi giochi1 = giochi.get(i);
+            if (giochi1 instanceof Giochidatavolo) {
+                Giochidatavolo giocoTavolo = (Giochidatavolo) giochi1;
+                if (giocoTavolo.getNumeroGiocatori() == num) {
+                    ritornoDeiGiocatori.add(giocoTavolo);
+                }
+            }
+        }
+        return ritornoDeiGiocatori;
+    }
+    public void stampaIGiochi() {
+        for (int i = 0; i < giochi.size(); i++) {
+            System.out.println(giochi.get(i));
+        }
+    }
 }
