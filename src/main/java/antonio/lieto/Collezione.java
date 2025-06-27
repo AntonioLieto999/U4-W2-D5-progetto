@@ -59,4 +59,32 @@ public class Collezione {
             System.out.println(giochi.get(i));
         }
     }
+
+    public boolean rimuoviGioco (int id) {
+        for (int i = 0; i <giochi.size(); i++) {
+            if (giochi.get(i).getId() == id){
+                giochi.remove(i);
+                System.out.println("gioco con ID " + id + " rimosso");
+                return true;
+            }
+        }
+        System.out.println("gioco " + id + " non trovato");
+        return false;
+    }
+
+    public boolean aggiornaGioco(int id, Giochi nuovoGioco) {
+        for (int i = 0; i< giochi.size(); i++) {
+            if (giochi.get(i).getId() == id) {
+                if (giochi.get(i).getId() != id) {
+                    System.out.println("l'ID deve essere lo stesso");
+                    return false;
+                }
+                giochi.set(i, nuovoGioco);
+                System.out.println("gioco con ID " + id + "aggiornato");
+                return true;
+            }
+        }
+        System.out.println("gioco con ID" + id + "non trovato");
+        return false;
+    }
 }
