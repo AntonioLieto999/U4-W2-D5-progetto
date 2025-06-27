@@ -4,6 +4,7 @@ import antonio.lieto.entities.Generi;
 import com.github.javafaker.Faker;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -11,6 +12,38 @@ public class Application {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Collezione collezione = new Collezione();
+
+        collezione.addGioco(new Videogiochi(1111, "Elden Ring", 2022, 60, "PC", 80, Generi.RPG));
+        collezione.addGioco(new Videogiochi(2222, "Street Fighter", 2023, 70, "PS5", 12, Generi.PICCHIADURO));
+        collezione.addGioco(new Videogiochi(3333, "League of Legends", 2009, 0, "PC", 999, Generi.MOBA));
+        collezione.addGioco(new Videogiochi(4444, "Hollow Knight(il mio gioco preferito)", 2017, 15, "Switch", 30, Generi.METROIDVANIA));
+        collezione.addGioco(new Videogiochi(5555, "World of Warcraft", 2004, 20, "PC", 300, Generi.MMORPG));
+
+        try {
+            collezione.addGioco(new Giochidatavolo(16, "Cluedo", 1949, 30, 6, 45));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            collezione.addGioco(new Giochidatavolo(17, "UNO", 1971, 10, 4, 20));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            collezione.addGioco(new Giochidatavolo(18, "Gioco dell'Oca", 1500, 15, 4, 30));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            collezione.addGioco(new Giochidatavolo(19, "Risiko", 1957, 35, 6, 120));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            collezione.addGioco(new Giochidatavolo(20, "Tavola Ouija", 1890, 25, 2, 20));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         while(true) {
             System.out.println("----Menu----");
@@ -126,7 +159,35 @@ public class Application {
                         }
                     }
                 }
-                case 4 -> {}
+                case 4 -> {
+                    System.out.println("ID da cercare: ");
+                    int id = scanner.nextInt();
+                    Giochi trovato = collezione.cercaId(id);
+                    if (trovato != null){
+                        System.out.println(trovato);
+                    }else {
+                        System.out.println("gioco non trovato");
+                    }
+                }
+                case 5 -> {
+                    System.out.println("prezzo massimo: ");
+                    int prezzo = scanner.nextInt();
+                    List<Giochi> risultati = collezione.cercaPrezzo(prezzo);
+                    risultati.forEach(System.out::println);
+                }
+                case 6 -> {
+                    System.out.println("numero di giocatori: ");
+                    int num = scanner.nextInt();
+                    List<Giochidatavolo> risultati = collezione.ricercaPerNumeroDiGiocatori(num);
+                    risultati.forEach(System.out::println);
+                }
+                case 7 -> collezione.stampaIGiochi();
+
+                case 0 -> {
+                    System.out.println("uscita dal programma.");
+                    scanner.close();
+                }
+                default -> System.out.println("scelta non valida");
             }
         }
     }
