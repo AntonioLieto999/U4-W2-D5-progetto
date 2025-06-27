@@ -11,6 +11,7 @@ public abstract class Giochi {
         this.titolo = titolo;
         this.anno = anno;
         this.prezzo = prezzo;
+
     }
 
     public int getId() {
